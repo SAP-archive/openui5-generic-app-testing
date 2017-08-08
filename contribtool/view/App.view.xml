@@ -1,0 +1,302 @@
+<mvc:View
+    controllerName="contribtool.controller.App"
+    xmlns="sap.m"
+    xmlns:u="sap.uxap"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:e="sap.ui.codeeditor"
+    xmlns:core="sap.ui.core"
+    xmlns:semantic="sap.m.semantic"
+    xmlns:demokit="sap.ui.demokit"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:data="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+
+    <App height="100%" width="100%" enableScrolling="false">
+        <Page title="Gherkin Generic Steps" enableScrolling="true" titleLevel="H1" >
+            <headerContent>
+                <ToggleButton id="btnBrowserTool" pressed="true" data:toolName="browser" press="setCurrentTool" iconFirst="true" icon="sap-icon://detail-view" text="Browser" />
+                <ToggleButton id="btnValidatorTool" pressed="false" data:toolName="validator" press="setCurrentTool" iconFirst="true" icon="sap-icon://approvals" text="Validator" />
+            </headerContent>
+            <l:VerticalLayout class="sapUiSmallMargin" width="100%">
+                <l:content>
+                    <VBox visible="{= ${/visibleTool} === 'browser'}">
+                        <Toolbar>
+                            <Title text="Generic Steps Browser" titleStyle="H2" width="70%" class="sapUiSmallMarginBegin"/>
+                        </Toolbar>
+                        <FlexBox justifyContent="Center">
+                            <SearchField class="sapUiSmallMargin" liveChange="onSearchLiveChange"
+                            />
+                        </FlexBox>
+                        <TileContainer height="17em" tiles="{/allActions}">
+                              <StandardTile 
+                                type="Monitor"
+                                icon="{= ${icon} ? 'sap-icon://{icon}' : 'sap-icon://step' }"
+                                title="{docs/synopsis}"
+                                press="onTileSelected"
+                                info="{name}" />
+                        </TileContainer>
+                        <FlexBox justifyContent="Center">
+                            <Button enabled="{= !${/suggestingNewAction} }"
+                                press="onSuggestNewActionClicked"
+                                class="sapUiTinyMarginBegin"
+                                text="Suggest new"
+                                icon="sap-icon://add" />
+                        </FlexBox>
+                        <f:Form id="FormToolbar" title="{= ${/selectedAction/name} || 'New Action' }"
+                            ariaLabelledBy="{/selectedAction/name}">
+                            <f:layout>
+                                <f:ResponsiveGridLayout
+                                        labelSpanL="1"
+                                        labelSpanM="1"
+                                        emptySpanL="1"
+                                        emptySpanM="1"
+                                        columnsL="1"
+                                        columnsM="1" />
+                            </f:layout>
+                            <f:formContainers>
+                                <f:FormContainer>
+                                    <f:formElements>
+                                        <f:FormElement>
+                                            <f:label>
+                                                <Label text="Name" class="sapUiSmallMarginTop"/>
+                                            </f:label>
+                                            <f:fields>
+                                                <Input 
+                                                    value="{/selectedAction/name}"
+                                                    editable="{/suggestingNewAction}"
+                                                    />
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement>
+                                            <f:label>
+                                                <Label text="Icon" class="sapUiSmallMarginTop"/>
+                                            </f:label>
+                                            <f:fields>
+                                                <l:HorizontalLayout>
+                                                    <core:Icon 
+                                                        class="sapUiSmallMargin"
+                                                        src="{= 'sap-icon://' + (${/selectedAction/icon} ? ${/selectedAction/icon} : 'incident' )}" />
+                                                    <Input 
+                                                        width="12em"
+                                                        liveChange="updateSelectedActionIcon"
+                                                        value="{/selectedAction/icon}"
+                                                        editable="{/suggestingNewAction}"
+                                                        />
+                                                    <FormattedText 
+                                                        visible="{/suggestingNewAction}"
+                                                        class="sapUiSmallMargin"
+                                                        htmlText="find via &lt;a target='_blank' href='http://veui5infra.dhcp.wdf.sap.corp:8080/sapui5-sdk-dist/test-resources/sap/m/demokit/iconExplorer/webapp/index.html'&gt;Icon Explorer&lt;/a&gt;"
+                                                        />
+                                                </l:HorizontalLayout>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement>
+                                            <f:label>
+                                                <Label text="Description" class="sapUiSmallMarginTop"/>
+                                            </f:label>
+                                            <f:fields>
+                                                <TextArea
+                                                    editable="{/suggestingNewAction}"
+                                                    value="{/selectedAction/docs/description}"
+                                                    />
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement>
+                                            <f:label>
+                                                <Label text="Synopsis" class="sapUiSmallMarginTop"/>
+                                            </f:label>
+                                            <f:fields>
+                                                <TextArea
+                                                    editable="{/suggestingNewAction}"
+                                                    value="{/selectedAction/docs/synopsis}"
+                                                    />
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement>
+                                            <f:label>
+                                                <Label text="Examples" class="sapUiSmallMarginTop"/>
+                                            </f:label>
+                                            <f:fields>
+                                                <l:VerticalLayout
+                                                    content="{/selectedAction/docs/examples}">
+                                                    <l:content>
+                                                        <FlexBox alignItems="Start">
+                                                            <VBox>
+                                                                <Input editable="{/suggestingNewAction}" value="{}" width="100%">
+                                                                </Input>
+                                                                <FormattedText visible="{
+                                                                    formatter: 'contribtool.formatters.isInvalidExample',
+                                                                    parts: ['', '/selectedAction/regexp']
+                                                                }" htmlText="&lt;span style='color: #E00;'&gt;does not match RegExp&lt;/span&gt;" />
+                                                                <layoutData>
+                                                                  <FlexItemData growFactor="1"/>
+                                                                </layoutData>
+                                                            </VBox>
+                                                            <Button
+                                                                class="sapUiTinyMarginBegin"
+                                                                visible="{ 
+                                                                    formatter: 'contribtool.formatters.isNotFirstBoundItem',
+                                                                    parts: ['/suggestingNewAction']
+                                                                }"
+                                                                press="onRemoveExampleClicked"
+                                                                type="Transparent"
+                                                                icon="sap-icon://less" />
+                                                            <Label
+                                                                visible="{
+                                                                    formatter: 'contribtool.formatters.isFirstBoundItem',
+                                                                    parts: ['/suggestingNewAction']
+                                                                }"
+                                                                class="sapUiLargeMarginEnd"
+                                                                text=""
+                                                                />
+                                                        </FlexBox>
+                                                    </l:content>
+                                                </l:VerticalLayout>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="">
+                                            <f:fields>
+                                                <l:VerticalLayout>
+                                                    <l:content>
+                                                        <FlexBox alignItems="">
+                                                            <Label>
+                                                                <layoutData>
+                                                                  <FlexItemData growFactor="1"/>
+                                                                </layoutData>
+                                                            </Label>
+                                                            <Button press="onAddExampleClicked"
+                                                                visible="{/suggestingNewAction}"
+                                                                icon="sap-icon://add"
+                                                                type="Transparent"
+                                                                class="sapUiLargeMarginEnd"/>
+                                                        </FlexBox>
+                                                    </l:content>
+                                                </l:VerticalLayout>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="RegExp">
+                                            <f:fields>
+                                                <VBox>
+                                                    <e:CodeEditor
+                                                        id="regExpEditor"
+                                                        type="javascript"
+                                                        value="{/selectedAction/regexp}"
+                                                        editable="{/suggestingNewAction}"
+                                                        lineNumbers="false">
+                                                    </e:CodeEditor>
+                                                    <FormattedText visible="{
+                                                        formatter: 'contribtool.formatters.isInvalidRegExp',
+                                                        parts: ['/selectedAction/regexp']
+                                                    }" htmlText="&lt;span style='color: #E00'&gt;invalid regular expression&lt;/span&gt;"/>
+                                                </VBox>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement>
+                                            <f:label>
+                                                <Label text="Code" class="sapUiTinyMarginTop" />
+                                            </f:label>
+                                            <f:fields>
+                                                <VBox class="sapUiTinyMarginTop">
+                                                    <e:CodeEditor
+                                                        id="functionEditor"
+                                                        type="javascript"
+                                                        value="{/selectedAction/action}"
+                                                        editable="{/suggestingNewAction}"
+                                                        valueSelection="false"
+                                                        lineNumbers="true">
+                                                    </e:CodeEditor>
+                                                    <FormattedText visible="{
+                                                        formatter: 'contribtool.formatters.hasImplementationError',
+                                                        parts: ['/selectedAction/action']
+                                                    }" htmlText="&lt;span style='color: #E00'&gt;{
+                                                        formatter: 'contribtool.formatters.getImplementationError',
+                                                        parts: ['/selectedAction/action']
+                                                    }&lt;/span&gt;"/>
+                                                    <FormattedText class="sapUiSmallMarginTop sapUiSmallMarginBottom" visible="{/suggestingNewAction}" htmlText="Please enter your GitHub credentials. We won't store them, but use them to publish your suggestion as a public GitHub gist and create a GitHub issue on your behalf" />
+                                                </VBox>
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement visible="{/suggestingNewAction}">
+                                            <f:label>
+                                                <Label text="Username" class="sapUiSmallMarginTop"/>
+                                            </f:label>
+                                            <f:fields>
+                                                <Input
+                                                    placeholder="GitHub Username"
+                                                    value="{/githubUser}"
+                                                    width="10em" />
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement visible="{/suggestingNewAction}">
+                                            <f:label>
+                                                <Label text="Password" class="sapUiSmallMarginTop"/>
+                                            </f:label>
+                                            <f:fields>
+                                                <Input
+                                                    type="Password"
+                                                    placeholder="GitHub Password"
+                                                    value="{/githubPassword}"
+                                                    width="10em" />
+                                            </f:fields>
+                                        </f:FormElement>
+                                        <f:FormElement label="">
+                                            <f:fields>
+                                                <l:VerticalLayout>
+                                                    <l:content>
+                                                        <FlexBox alignItems="">
+                                                            <Label>
+                                                                <layoutData>
+                                                                  <FlexItemData growFactor="1"/>
+                                                                </layoutData>
+                                                            </Label>
+                                                            <Button type="Transparent" press="onCancelSuggestionClicked" visible="{/suggestingNewAction}" text="Cancel" />
+                                                            <Button type="Emphasized" press="onSendSuggestionClicked" class="sapUiTinyMarginBegin" visible="{/suggestingNewAction}" text="Send Suggestion" />
+                                                        </FlexBox>
+                                                    </l:content>
+                                                </l:VerticalLayout>
+                                            </f:fields>
+                                        </f:FormElement>
+                                    </f:formElements>
+                                </f:FormContainer>
+                            </f:formContainers>
+                        </f:Form>
+                    </VBox>
+                    <VBox visible="{= ${/visibleTool} === 'validator'}">
+                        <Toolbar>
+                            <Title text="Generic Steps Validator" titleStyle="H2" width="70%" class="sapUiSmallMarginBegin"/>
+                        </Toolbar>
+                        <FlexBox
+                            width="100%"
+                            class="columns"
+                            alignItems="Stretch">
+                            <items>
+                                <VBox class="sapUiSmallMargin">
+                                    <e:CodeEditor
+                                        id="specValidator"
+                                        type="gherkin"
+                                        height="45em"
+                                        editable="true"
+                                        value="Hello"
+                                        liveChange="onSpecValidatorLiveChange"
+                                        lineNumbers="true">
+                                    </e:CodeEditor>
+                                    <layoutData> <FlexItemData growFactor="2" /> </layoutData>
+                                </VBox>
+                                <VBox class="sapUiSmallMargin sapUiLargeMarginEnd">
+                                    <CheckBox select="onOnlyErrorsPress" text="Show Errors Only" />
+                                    <List id="validatorProblems" items="{/specValidationData}">
+                                        <StandardListItem
+                                            title="Line {line}: {title}"
+                                            description="{description}"
+                                            highlight="{= ${isError} === true ? 'Error' : 'Success' }"
+                                            />
+                                    </List>
+                                </VBox>
+                            </items>
+                        </FlexBox>
+                    </VBox>
+                </l:content>
+            </l:VerticalLayout>
+        </Page>
+    </App>
+</mvc:View>

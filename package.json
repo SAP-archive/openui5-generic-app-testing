@@ -1,0 +1,31 @@
+{
+  "name": "openui5-generic-app-testing",
+  "version": "1.0.0",
+  "description": "Generic UI5 testing blocks built on OPA/Gherkin",
+  "main": "dist/genericSteps.js",
+  "directories": {
+    "test": "test/steps"
+  },
+  "scripts": {
+    "test": "mocha test test/steps.js test/steps/*.js",
+    "build": "grunt"
+  },
+  "keywords": [
+    "testing",
+    "opa",
+    "gherkin",
+    "ui5",
+    "cucumber"
+  ],
+  "author": "Savio Dimatteo <savio.dimatteo@sap.com>",
+  "license": "Apache 2.0",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^2.3.0",
+    "mocha": "^3.2.0",
+    "sinon": "^2.3.8"
+  }
+}

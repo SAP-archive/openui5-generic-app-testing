@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+		<meta charset="utf-8">
+
+		<title>UI5 Test App</title>
+
+		<!-- Load UI5, select "sap_belize" theme and the "sap.m" control library -->
+		<script id='sap-ui-bootstrap'
+			src='https://openui5.hana.ondemand.com/resources/sap-ui-core.js'
+			data-sap-ui-theme='sap_belize'
+			data-sap-ui-libs='sap.m'
+            data-sap-ui-resourceroots='{
+                "ui5app": "./"
+            }'
+			data-sap-ui-xx-bindingSyntax='complex'></script>
+
+		<script>
+
+			/*** DEFINE RE-USE COMPONENTS - NORMALLY DONE IN SEPARATE FILES ***/
+
+			// define a new (simple) Controller type
+			sap.ui.controller("ui5app.controller", {
+
+				// implement an event handler in the Controller
+				onButtonClicked: function() {
+                    oModel.setProperty("/wasButtonClicked", true);
+                    oModel.setProperty("/iClickCount", 1 +
+                        oModel.getProperty("/iClickCount")
+                    )
+				},
+                onListItemClicked: function (oItem) {
+                    oModel.setProperty("/sSelectedListItem", 
+                        oItem.getParameter("item").getText()
+                    );
+                },
+                onRemoveListItemClicked: function () {
+                    var oListControl = this.byId("lstShapes");
+                    if (oListControl.getItems().length > 0) {
+                        oListControl.removeItem(0);
+                    }
+                },
+                onRefreshLocationClicked: function () {
+                    this.getView().getModel().setProperty("/currentLocation", window.location.href);
+                },
+                onNavigateClicked: function () {
+                    window.location.hash = "#nav";
+                }
+			});
+
+
+			/*** THIS IS THE "APPLICATION" CODE ***/
+
+			// create some dummy JSON data
+			var data = {
+                wasButtonClicked: false,
+                iClickCount: 0,
+                sSelectedListItem: "No",
+                currentLocation: window.location.href
+			};
+
+			// instantiate the View
+            var myView = sap.ui.xmlview({
+                viewName: "ui5app.view.Main"
+            });
+
+			// create a Model and assign it to the View
+			var oModel = new sap.ui.model.json.JSONModel();
+			oModel.setData(data);
+			myView.setModel(oModel);
+
+			// put the View onto the screen
+			myView.placeAt('content');
+
+		</script>
+
+	</head>
+	<body id='content' class='sapUiBody'>
+	</body>
+</html>

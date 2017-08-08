@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <meta charset="utf-8">
+        <style>
+            body, html {
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+            .contribtoolAceGreen {
+                position:absolute;
+                background: rgba(100,200,100,0.5);
+                z-index:20
+            }
+            .contribtoolAceRed {
+                position:absolute;
+                background: rgba(200,100,100,0.5);
+                z-index:20
+            }
+        </style>
+
+        <title>Gherkin Generic Steps Contribution Tool</title>
+
+        <!-- Load UI5, select "sap_belize" theme and the "sap.m" control library -->
+        <script id='sap-ui-bootstrap'
+            src='https://openui5.hana.ondemand.com/resources/sap-ui-core.js'
+            data-sap-ui-theme='sap_belize'
+            data-sap-ui-libs='sap.m'
+            data-sap-ui-compatVersion='edge'
+            data-sap-ui-preload='async'
+            data-sap-ui-resourceroots='{
+                "contribtool": "./contribtool",
+                "dist": "./dist"
+            }'
+            data-sap-ui-xx-bindingSyntax='complex'></script>
+        <script>
+            sap.ui.getCore().attachInit(function () {
+                new sap.ui.xmlview({
+                    viewName: "contribtool.view.App"
+                }).placeAt("content");
+            });
+        </script>
+    </head>
+    <body id='content' class='sapUiBody'></body>
+</html>

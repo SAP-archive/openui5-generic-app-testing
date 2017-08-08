@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Opa tests for UI5 App</title>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+        <meta charset="UTF-8">
+
+        <script id="sap-ui-bootstrap"
+            src='https://openui5.hana.ondemand.com/resources/sap-ui-core.js'
+            data-sap-ui-loglevel="INFO"
+            data-sap-ui-resourceroots='{
+                "ui5app.test": "./",
+                "ui5app.utils": "../../dist/"
+            }'>
+        </script>
+
+        <script>
+            sap.ui.require([
+               "jquery.sap.global",
+               "sap/ui/test/gherkin/opa5TestHarness",
+               'sap/ui/test/Opa5',
+               // Code coverage will be calculated for all modules loaded after the harness
+               "ui5app/test/OpaTestSteps"
+            ], function($, opa5TestHarness, Opa5, Steps) {
+                "use strict";
+
+                Opa5.extendConfig({
+                    viewNamespace : "ui5app.view.",
+                    autoWait : true
+                });
+            
+                opa5TestHarness.test({
+                  featurePath: "ui5app/test/specs/Test",
+                  steps: Steps,
+                  generateMissingSteps: true
+                });
+            });
+        </script>
+
+    </head>
+    <body>
+        <div id="content"></div>
+        <h1 id="qunit-header">Opa tests for sample Ui5 App</h1>
+        <h2 id="qunit-banner"></h2>
+        <h2 id="qunit-userAgent"></h2>
+        <ol id="qunit-tests"></ol>
+    </body>
+</html>

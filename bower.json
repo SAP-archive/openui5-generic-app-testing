@@ -1,0 +1,25 @@
+{
+  "name": "openui5-generic-app-testing",
+  "version": "1.0.0",
+  "authors": [
+    "Savio Dimatteo <savio.dimatteo@sap.com>"
+  ],
+  "description": "Generic UI5 testing blocks built on OPA/Gherkin",
+  "main": "dist/genericSteps.js",
+  "keywords": [
+    "testing",
+    "opa",
+    "gherkin",
+    "ui5",
+    "cucumber",
+    "ui5"
+  ],
+  "license": "Apache-2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
