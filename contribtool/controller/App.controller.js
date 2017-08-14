@@ -8,7 +8,7 @@ sap.ui.define([
 
     /* global jQuery */
 
-    var S_GITHUB_API_BASE = "https://github.wdf.sap.corp/api/v3";
+    var S_GITHUB_API_BASE = "https://api.github.com";
 
     var oActionTemplate = {
         name: "myStep",
@@ -342,19 +342,19 @@ sap.ui.define([
                 }, null, 3)
             }).done(function (oResponse) {
                 //  {
-                //    "url": "https://github.wdf.sap.corp/api/v3/gists/289663c287871221bfb7756b7841a535",
-                //    "forks_url": "https://github.wdf.sap.corp/api/v3/gists/289663c287871221bfb7756b7841a535/forks",
-                //    "commits_url": "https://github.wdf.sap.corp/api/v3/gists/289663c287871221bfb7756b7841a535/commits",
+                //    "url": "https://<github-domain>/api/v3/gists/289663c287871221bfb7756b7841a535",
+                //    "forks_url": "https://<github-domain>/api/v3/gists/289663c287871221bfb7756b7841a535/forks",
+                //    "commits_url": "https://<github-domain>/api/v3/gists/289663c287871221bfb7756b7841a535/commits",
                 //    "id": "289663c287871221bfb7756b7841a535",
-                //    "git_pull_url": "https://github.wdf.sap.corp/gist/289663c287871221bfb7756b7841a535.git",
-                //    "git_push_url": "https://github.wdf.sap.corp/gist/289663c287871221bfb7756b7841a535.git",
-                //    "html_url": "https://github.wdf.sap.corp/gist/289663c287871221bfb7756b7841a535",
+                //    "git_pull_url": "https://<github-domain>/gist/289663c287871221bfb7756b7841a535.git",
+                //    "git_push_url": "https://<github-domain>/gist/289663c287871221bfb7756b7841a535.git",
+                //    "html_url": "https://<github-domain>/gist/289663c287871221bfb7756b7841a535",
                 //    "files": {
                 //      "iCanTest.js": {
                 //        "filename": "iCanTest.js",
                 //        "type": "application/javascript",
                 //        "language": "JavaScript",
-                //        "raw_url": "https://github.wdf.sap.corp/gist/anonymous/289663c287871221bfb7756b7841a535/raw/9558ab2cbb6fef42320708bda9d6f62b30717468/iCanTest.js",
+                //        "raw_url": "https://<github-domain>/gist/anonymous/289663c287871221bfb7756b7841a535/raw/9558ab2cbb6fef42320708bda9d6f62b30717468/iCanTest.js",
                 //        "size": 39,
                 //        "truncated": false,
                 //        "content": "function () { var a = 1; \n var c = 2; }"
@@ -366,7 +366,7 @@ sap.ui.define([
                 //    "description": "This is a sample gist",
                 //    "comments": 0,
                 //    "user": null,
-                //    "comments_url": "https://github.wdf.sap.corp/api/v3/gists/289663c287871221bfb7756b7841a535/comments",
+                //    "comments_url": "https://<github-domain>/api/v3/gists/289663c287871221bfb7756b7841a535/comments",
                 //    "forks": [
                 //  
                 //    ],
@@ -380,7 +380,7 @@ sap.ui.define([
                 //          "additions": 2,
                 //          "deletions": 0
                 //        },
-                //        "url": "https://github.wdf.sap.corp/api/v3/gists/289663c287871221bfb7756b7841a535/f7b7abfb0b311a303b50de433a449ac3b6baa5e0"
+                //        "url": "https://<github-domain>/api/v3/gists/289663c287871221bfb7756b7841a535/f7b7abfb0b311a303b50de433a449ac3b6baa5e0"
                 //      }
                 //    ],
                 //    "truncated": false
