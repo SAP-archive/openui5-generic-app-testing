@@ -17,32 +17,16 @@ module.exports = {
         , "(\\sin (.+?) view)?$"
     ].join("")),
     action: function (sItemPosition, sControlId, sAggregationName, sViewPart, sViewName) {
+        var that = this;
         var oWaitForOptions = {
             id: sControlId,
             success: function (oControl) {
-                var oItem,
-                    iPosition,
-                    oPositions,
-                    aItems;
-
-                aItems = oControl.getAggregation(sAggregationName);
-                oPositions = {
-                    "first": 0,
-                    "last": aItems.length - 1
-                };
-                if (sItemPosition.match(/^\d/)) {
-                    iPosition = parseInt( sItemPosition.replace(/st|rd|th|nd/g, ""), 10) - 1;
-                } else {
-                    iPosition = oPositions[sItemPosition];
-                }
-                if (typeof iPosition === "undefined" || iPosition === null) {
-                    throw new Error("Unrecognized position '" + sItemPosition + "'");
-                }
-                oItem = aItems[iPosition];
+                var aItems = oControl.getAggregation(sAggregationName),
+                    iItemIndex = that.utils.positionTextToIndex(sItemPosition, aItems.length),
+                    oItem = aItems[iItemIndex];
 
                 oItem.$().trigger("tap");
             }
-        
         };
 
         if (sViewPart) {
