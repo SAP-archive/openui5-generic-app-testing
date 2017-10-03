@@ -143,7 +143,10 @@ Now you can up your favourite code editor and proceed as follows:
 1. Create a new step with the skeleton above and place it under `src/steps/`.
     NOTE: please do not include any other dependency. If you need an OPA5
     action (e.g., EnterText), please inject it in the generic step context by
-    editing `src/GenericSteps.js`.
+    editing `src/GenericSteps.js`. Also, have a look at `src/utils.js` for
+    functions that can be shared across actions. Like `opa` and `Opa5`, also
+    the utils object is injected in the context of a step action: you can
+    access utils within an action via `this.utils`
 
 2. Add the newly created step to src/steps/index.js 
     This will allow your step to be validated automatically and registered by
