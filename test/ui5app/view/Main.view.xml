@@ -5,7 +5,7 @@
     controllerName="ui5app.controller">
 
     <Panel headerText="Gherkin Generic Actions test app">
-       <VBox>
+       <VBox id="verticalBox">
            <Label id="lblLocation" text="Location: {/currentLocation}" />
            <Button id="btnNavigate" press="onNavigateClicked" text="Navigate" />
            <Button id="btnRefreshLocation" press="onRefreshLocationClicked" text="Refresh Location" />

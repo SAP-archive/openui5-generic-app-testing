@@ -2,6 +2,16 @@ Feature: Can trigger all actions provided by Gherkin Generic Steps
   
   Background: Initial state
     Given  I start the app from 'ui5app/test/ui5app.html'
+
+  Scenario: iClickOnNestedItem by position
+    Given I can see verticalBox in Main view
+     When I click on the 3rd sap.ui.core.Item control deeply nested inside verticalBox in Main view
+     Then I can see lblListItemClicked with text 'Circle shape was clicked' in Main view
+
+  Scenario: iClickOnNestedItem by text
+    Given I can see verticalBox in Main view
+     When I click on the control deeply nested inside verticalBox with text containing 'quar' in Main view
+     Then I can see lblListItemClicked with text 'Square shape was clicked' in Main view
   
   Scenario: iCanSee
     Then I can see btnClickMe in Main view
