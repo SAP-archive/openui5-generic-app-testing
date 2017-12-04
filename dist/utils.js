@@ -1,9 +1,24 @@
-/*! openui5-generic-app-testing 2017-10-04 */
+/*! openui5-generic-app-testing 2017-12-04 */
 
 (function() {
     var module = {};
     function getGetterMethodName(sProperty) {
         return "get" + sProperty.charAt(0).toUpperCase() + sProperty.slice(1);
+    }
+    function isView(oControl) {
+        var sElementName = oControl.getMetadata().getElementName();
+        return Object.keys(sap.ui.core.mvc.ViewType).map(function(sViewTypeKey) {
+            var sViewTypeValue = sap.ui.core.mvc.ViewType[sViewTypeKey];
+            return "sap.ui.core.mvc." + sViewTypeValue + "View";
+        }).some(function(sPossibleViewName) {
+            return sElementName === sPossibleViewName;
+        });
+    }
+    function getControlView(oControl) {
+        if (!oControl) {
+            return null;
+        }
+        return isView(oControl) ? oControl : getControlView(oControl.getParent());
     }
     function positionTextToIndex(sPositionText, iNumItems) {
         var iIndex = -1;
@@ -95,7 +110,8 @@
         testTextValue: testTextValue,
         findNestedAggregationItem: findNestedAggregationItem,
         getGetterMethodName: getGetterMethodName,
-        positionTextToIndex: positionTextToIndex
+        positionTextToIndex: positionTextToIndex,
+        getControlView: getControlView
     };
     module.exports.name = "utils";
     sap.ui.define([], function() {
