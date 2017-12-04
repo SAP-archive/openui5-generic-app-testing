@@ -1,4 +1,4 @@
-/*! openui5-generic-app-testing 2017-12-04 */
+/*! openui5-generic-app-testing 2017-12-05 */
 
 (function() {
     var module = {};
@@ -14,20 +14,8 @@
             var that = this;
             var oWaitForOptions = {
                 id: sControlId,
-                success: function(oControl) {
-                    var oSearchConstraints = {
-                        itemIndex: sMaybePosition ? that.utils.positionTextToIndex(sMaybePosition.replace(" ", "")) : 0
-                    };
-                    if (sControlType) {
-                        oSearchConstraints.controlType = sControlType.replace(" ", "");
-                    }
-                    if (sWithProperty) {
-                        oSearchConstraints.property = sPropertyName;
-                        oSearchConstraints.propertyOperand = (sTypeOfCheck || "equal to").replace(/\s+$/g, "");
-                        oSearchConstraints.propertyValue = sValue;
-                    }
-                    var bDeepSearch = sDeeplyOrDirectly === "deeply";
-                    var oSearch = that.utils.findNestedAggregationItem(oControl, oSearchConstraints, bDeepSearch, []);
+                success: function(oParentControl) {
+                    var oSearch = that.utils.findControl(sMaybePosition, sControlType, sWithProperty, sPropertyName, sTypeOfCheck, sValue, sDeeplyOrDirectly, oParentControl);
                     that.Opa5.assert.ok(!!oSearch.found, sDescriptiveMatch + " found");
                     oSearch.found.$().trigger("tap");
                 }

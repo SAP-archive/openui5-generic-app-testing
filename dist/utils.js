@@ -1,4 +1,4 @@
-/*! openui5-generic-app-testing 2017-12-04 */
+/*! openui5-generic-app-testing 2017-12-05 */
 
 (function() {
     var module = {};
@@ -35,6 +35,27 @@
             throw new Error("Unrecognized position '" + sPositionText + "'");
         }
         return iIndex;
+    }
+    function testControlProperty(oControl, sPropertyName, sTypeOfCheck, sValue) {
+        var sGetterMethodName = getGetterMethodName(sPropertyName);
+        if (typeof oControl[sGetterMethodName] !== "function") {
+            return {
+                success: false,
+                reason: "action refers to property '" + sPropertyName + "'. However the control '" + oControl.getId() + "' does not expose the " + sGetterMethodName + " getter"
+            };
+        }
+        var sText = oControl[sGetterMethodName]();
+        sTypeOfCheck = (sTypeOfCheck || "equal to").replace(/\s+$/g, "");
+        var bPass = testTextValue(sTypeOfCheck, sText, sValue);
+        if (!bPass) {
+            return {
+                success: false,
+                reason: "the text '" + sText + "' is not " + sTypeOfCheck + " '" + sValue + "'"
+            };
+        }
+        return {
+            success: true
+        };
     }
     function findNestedAggregationItem(oTargetControl, oConstraints, bDeep, aControlsToCheck) {
         var oTargetControlMetadata = oTargetControl.getMetadata();
@@ -106,12 +127,30 @@
             throw new Error("Invalid operand for text value check: '" + sOperand + "'");
         }
     }
+    function findControl(sMaybePosition, sControlType, sWithProperty, sPropertyName, sTypeOfCheck, sValue, sDeeplyOrDirectly, oParentControl) {
+        var oSearchConstraints = {
+            itemIndex: sMaybePosition ? positionTextToIndex(sMaybePosition.replace(" ", "")) : 0
+        };
+        if (sControlType) {
+            oSearchConstraints.controlType = sControlType.replace(" ", "");
+        }
+        if (sWithProperty) {
+            oSearchConstraints.property = sPropertyName;
+            oSearchConstraints.propertyOperand = (sTypeOfCheck || "equal to").replace(/\s+$/g, "");
+            oSearchConstraints.propertyValue = sValue;
+        }
+        var bDeepSearch = sDeeplyOrDirectly === "deeply";
+        var oSearch = findNestedAggregationItem(oParentControl, oSearchConstraints, bDeepSearch, []);
+        return oSearch;
+    }
     module.exports = {
         testTextValue: testTextValue,
         findNestedAggregationItem: findNestedAggregationItem,
         getGetterMethodName: getGetterMethodName,
         positionTextToIndex: positionTextToIndex,
-        getControlView: getControlView
+        getControlView: getControlView,
+        findControl: findControl,
+        testControlProperty: testControlProperty
     };
     module.exports.name = "utils";
     sap.ui.define([], function() {
