@@ -16,9 +16,10 @@ module.exports = {
     regexp: new RegExp([
         "^([^\\s]+?)"               // id
         ,"( in ([^\\s]+?) view)?"   // view name
-        ," contains(\\sno|\\s\\d+)?(\\s[^\\s]+)$" // contains no items
-                                                   // contains items
-                                                   // contains 1 items
+        ," contains(\\sno|\\s\\d+)?(\\s[^\\s]+)$" /* contains no items
+                                                   * contains items
+                                                   * contains 1 items
+                                                   */
     ].join("")),
     action: function (sId, sViewPart, sViewName, sNumber, sAggregationName) {
         var sMessage,

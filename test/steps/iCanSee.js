@@ -2,6 +2,7 @@
 
 var assert = require("assert");
 var oStep = require("../../src/steps/iCanSee");
+var oUtils = require("../../src/utils");
 var sinon = require("sinon");
 
 describe("iCanSee", function() {
@@ -10,7 +11,8 @@ describe("iCanSee", function() {
         var oContext = {
             opa: {
                 waitFor: sinon.stub()
-            }
+            },
+            utils: oUtils
         };
 
         return oContext;
@@ -21,7 +23,7 @@ describe("iCanSee", function() {
             "I can see btnNext with text 'next' in Detail view": {
                 id: "btnNext",
                 viewName: "Detail"
-                    // don't compare success function. It's checked in the test...
+                // don't compare success function. It's checked in the test...
             },
         }, {
             "I can see lblTitle in Overview view": {

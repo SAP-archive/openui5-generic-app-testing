@@ -18,6 +18,11 @@ Feature: Can trigger all actions provided by Gherkin Generic Steps
      And I can see btnClickMe with text containing 'button was clicked' in Main view
      And I can see btnClickMe with text starting with 'This button' in Main view
      And I can see btnClickMe with text ending with 'times' in Main view
+    
+  Scenario: iCanSee (nested)
+    Then I can see the first sap.ui.core.Item control deeply nested inside verticalBox in Main view
+     And I can see the control directly nested inside verticalBox with text 'Hide list of shapes' in Main view
+     And I can see the first control directly nested inside verticalBox with text starting with 'Location:' in Main view
 
   Scenario: iClickOn
     Given I can see btnClickMe with text 'This button was clicked 0 times' in Main view

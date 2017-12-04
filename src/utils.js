@@ -1,3 +1,5 @@
+/* global module sap */
+
 function getGetterMethodName (sProperty) {
     return "get" + sProperty.charAt(0).toUpperCase() + sProperty.slice(1);
 }
@@ -41,6 +43,28 @@ function positionTextToIndex (sPositionText, iNumItems) {
     return iIndex;
 }
 
+function testControlProperty(oControl, sPropertyName, sTypeOfCheck, sValue) {
+    var sGetterMethodName = getGetterMethodName(sPropertyName);
+    if (typeof oControl[sGetterMethodName] !== "function") {
+        return {
+            success: false,
+            reason: "action refers to property '" + sPropertyName + "'. However the control '" + oControl.getId() + "' does not expose the " + sGetterMethodName + " getter"
+        };
+    }
+    var sText = oControl[sGetterMethodName]();
+    sTypeOfCheck = (sTypeOfCheck || "equal to").replace(/\s+$/g, "");
+
+    var bPass = testTextValue(sTypeOfCheck, sText, sValue);
+    if (!bPass) {
+        return {
+            success: false,
+            reason: "the text '" + sText + "' is not " + sTypeOfCheck + " '" + sValue + "'"
+        };
+    }
+    return { success: true };
+
+}
+
 function findNestedAggregationItem (oTargetControl, oConstraints, bDeep, aControlsToCheck) {
     var oTargetControlMetadata = oTargetControl.getMetadata();
     var oFoundControl = null;
@@ -57,7 +81,7 @@ function findNestedAggregationItem (oTargetControl, oConstraints, bDeep, aContro
             var sPublicMethodName = getGetterMethodName(sAggregationName);
             var aChildControls = oTargetControl[sPublicMethodName]();
             if (Object.prototype.toString.apply(aChildControls) !== "[object Array]") {
-               return;
+                return;
             }
 
             oFoundControl = [
@@ -82,37 +106,72 @@ function findNestedAggregationItem (oTargetControl, oConstraints, bDeep, aContro
                 }
                 return aFilteredChildControls;
             }, aChildControls)[0] || null;
-            
+
             if (!oFoundControl) {
                 Array.prototype.push.apply(aControlsToCheck, aChildControls);
             }
         });
 
-     if (!oFoundControl && aControlsToCheck.length > 0 && bDeep) {
-         return findNestedAggregationItem(aControlsToCheck.shift(), oConstraints, bDeep, aControlsToCheck);
-     }
+    if (!oFoundControl && aControlsToCheck.length > 0 && bDeep) {
+        return findNestedAggregationItem(aControlsToCheck.shift(), oConstraints, bDeep, aControlsToCheck);
+    }
 
-     return {
-         found: oFoundControl,
-         remaining: aControlsToCheck
-     };
+    return {
+        found: oFoundControl,
+        remaining: aControlsToCheck
+    };
 }
 
 function testTextValue(sOperand, sText, sValue) {
     switch (sOperand) {
-        case "containing":
-            return sText.indexOf(sValue) >= 0;
-        case "starting with":
-            return sText.indexOf(sValue) === 0;
-        case "ending with":
-            var iPosition = sText.indexOf(sValue);
-            return iPosition > -1 
+    case "containing":
+        return sText.indexOf(sValue) >= 0;
+    case "starting with":
+        return sText.indexOf(sValue) === 0;
+    case "ending with":
+        var iPosition = sText.indexOf(sValue);
+        return iPosition > -1
                 && iPosition + sValue.length === sText.length;
-        case "equal to":
-            return sText === sValue;
-        default:
-            throw new Error("Invalid operand for text value check: '" + sOperand + "'");
+    case "equal to":
+        return sText === sValue;
+    default:
+        throw new Error("Invalid operand for text value check: '" + sOperand + "'");
     }
+}
+
+function findControl(
+    sMaybePosition,
+    sControlType,
+    sWithProperty,
+    sPropertyName,
+    sTypeOfCheck,
+    sValue,
+    sDeeplyOrDirectly,
+    oParentControl
+) {
+    var oSearchConstraints = {
+        itemIndex: sMaybePosition
+            ? positionTextToIndex(sMaybePosition.replace(" ", ""))
+            : 0
+    };
+
+    if (sControlType) {
+        oSearchConstraints.controlType = sControlType.replace(" ", "");
+    }
+
+    if (sWithProperty) {
+        oSearchConstraints.property = sPropertyName;
+        oSearchConstraints.propertyOperand = (sTypeOfCheck || "equal to").replace(/\s+$/g, "");
+        oSearchConstraints.propertyValue = sValue;
+    }
+
+    var bDeepSearch = (sDeeplyOrDirectly === "deeply");
+
+    var oSearch = findNestedAggregationItem(
+        oParentControl, oSearchConstraints, bDeepSearch, []
+    );
+
+    return oSearch;
 }
 
 module.exports = {
@@ -120,5 +179,7 @@ module.exports = {
     findNestedAggregationItem: findNestedAggregationItem,
     getGetterMethodName: getGetterMethodName,
     positionTextToIndex: positionTextToIndex,
-    getControlView: getControlView
+    getControlView: getControlView,
+    findControl: findControl,
+    testControlProperty: testControlProperty
 };

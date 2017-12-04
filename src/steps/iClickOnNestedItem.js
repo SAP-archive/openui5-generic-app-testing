@@ -35,30 +35,20 @@ module.exports = {
     ) {
 
         var that = this;
-        
+
         var oWaitForOptions = {
             id: sControlId,
-            success: function (oControl) {
-                var oSearchConstraints = {
-                    itemIndex: sMaybePosition
-                        ? that.utils.positionTextToIndex(sMaybePosition.replace(" ", ""))
-                        : 0
-                };
+            success: function (oParentControl) {
 
-                if (sControlType) {
-                    oSearchConstraints.controlType = sControlType.replace(" ", "");
-                }
-
-                if (sWithProperty) {
-                    oSearchConstraints.property = sPropertyName;
-                    oSearchConstraints.propertyOperand = (sTypeOfCheck || "equal to").replace(/\s+$/g, "");
-                    oSearchConstraints.propertyValue = sValue;
-                }
-
-                var bDeepSearch = (sDeeplyOrDirectly === "deeply");
-
-                var oSearch = that.utils.findNestedAggregationItem(
-                    oControl, oSearchConstraints, bDeepSearch, []
+                var oSearch = that.utils.findControl(
+                    sMaybePosition,
+                    sControlType,
+                    sWithProperty,
+                    sPropertyName,
+                    sTypeOfCheck,
+                    sValue,
+                    sDeeplyOrDirectly,
+                    oParentControl
                 );
 
                 that.Opa5.assert.ok(!!oSearch.found, sDescriptiveMatch + " found");
