@@ -66,3 +66,13 @@ Feature: Can trigger all actions provided by Gherkin Generic Steps
      When I click on btnNavigate in Main view
       And I press browser back
      Then I can see lblLocation with text containing 'ui5app.html' in Main view 
+
+  Scenario: iCannotSee (item does not exist - no main view given)
+     Then I cannot see btnNotExisting
+  Scenario: iCannotSee (item is invisible - main view specified)
+    Given I can see lstShapes in Main view
+      And I click on btnHide in Main view
+     Then I cannot see lstShapes in Main view
+  Scenario: iCannotSee (item does not exist)
+     Then I cannot see notExistingButton in Main view
+

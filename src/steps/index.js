@@ -6,7 +6,8 @@ sap.ui.define([
     "./aggregationHasItems",
     "./iPressBrowserBack",
     "./iStartTheApp",
-    "./iClickOnNestedItem"
+    "./iClickOnNestedItem",
+    "./iCannotSee"
 ], function () {
     return Array.prototype.slice.call(arguments, 0);
 });

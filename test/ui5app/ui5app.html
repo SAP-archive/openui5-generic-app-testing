@@ -24,6 +24,9 @@
 			sap.ui.controller("ui5app.controller", {
 
 				// implement an event handler in the Controller
+                onButtonHideClicked: function () {
+                    oModel.setProperty("/lstShapesVisible", false);
+                },
 				onButtonClicked: function() {
                     oModel.setProperty("/wasButtonClicked", true);
                     oModel.setProperty("/iClickCount", 1 +
@@ -57,7 +60,8 @@
                 wasButtonClicked: false,
                 iClickCount: 0,
                 sSelectedListItem: "No",
-                currentLocation: window.location.href
+                currentLocation: window.location.href,
+                lstShapesVisible: true
 			};
 
 			// instantiate the View

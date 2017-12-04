@@ -10,8 +10,9 @@
            <Button id="btnNavigate" press="onNavigateClicked" text="Navigate" />
            <Button id="btnRefreshLocation" press="onRefreshLocationClicked" text="Refresh Location" />
            <Button id="btnClickMe" text="This button was clicked {/iClickCount} times" press="onButtonClicked"></Button>
+           <Button id="btnHide" text="Hide list of shapes" press="onButtonHideClicked"></Button>
            <Label visible="{/wasButtonClicked}" id="lblNumberClicked" text="Button was clicked"></Label>
-           <SelectList itemPress="onListItemClicked" id="lstShapes">
+           <SelectList visible="{/lstShapesVisible}" itemPress="onListItemClicked" id="lstShapes">
                <items>
                    <core:Item text="Triangle" />
                    <core:Item text="Square" />
