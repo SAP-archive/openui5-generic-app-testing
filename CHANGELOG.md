@@ -1,5 +1,8 @@
 # Changelog
 
+## Current Development Version
+- Adjust synopses
+
 ## Version 1.1.2
 - Added more powerful `iCanSee` action, which now supports searching nested items along the same lines of `iClickOnNestedItem`
 - Added .eslintrc for source code validation

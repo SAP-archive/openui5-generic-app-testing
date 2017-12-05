@@ -1,7 +1,7 @@
 module.exports = {
     docs: {
         description: "Performs a click operation on an element with a certain id",
-        synopsis: "I click on <id> [in <viewName> view] [<number> times]",
+        synopsis: "I click on CONTROL_ID [in VIEW_NAME view] [NUMBER times]",
         examples: [
             "I click on btnConfirm",
             "I click on btnShowCalendar in Overview view",

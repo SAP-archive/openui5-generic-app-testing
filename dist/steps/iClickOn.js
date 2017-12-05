@@ -5,7 +5,7 @@
     module.exports = {
         docs: {
             description: "Performs a click operation on an element with a certain id",
-            synopsis: "I click on <id> [in <viewName> view] [<number> times]",
+            synopsis: "I click on CONTROL_ID [in VIEW_NAME view] [NUMBER times]",
             examples: [ "I click on btnConfirm", "I click on btnShowCalendar in Overview view", "I click on btnConfirm in Main view 4 times", "I click on btnConfirm 4 times" ]
         },
         regexp: new RegExp([ "^I click on\\s+", "([a-zA-Z0-9]+)", "(\\s+in\\s+(.+?)\\sview)?", "(\\s(\\d+)\\stimes)?$" ].join("")),

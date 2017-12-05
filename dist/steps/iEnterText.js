@@ -5,7 +5,7 @@
     module.exports = {
         docs: {
             description: "Enters a text into a field",
-            synopsis: "I enter '<text>' into <controlId> [in <viewName> view]",
+            synopsis: "I enter 'TEXT' into CONTROL_ID [in VIEW_NAME view]",
             examples: [ "I enter 'something' into txtField", "I enter 'hello' into txtNotesArea in Creation view", "I enter 'something \"good\"' into txtInput in Main view", "I enter '00012345689ABC' into txtProductId in Main view" ]
         },
         icon: "edit",

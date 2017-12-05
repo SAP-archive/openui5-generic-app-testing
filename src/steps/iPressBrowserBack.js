@@ -1,7 +1,7 @@
 module.exports = {
     docs: {
         description: "Performs a back navigation if the app is running in the Fiori Launchpad or just performs back navigation via window.history.back().",
-        synopsis: "I <go back>|<press browser back>",
+        synopsis: "I (go back|press browser back)",
         examples: [
             "I press browser back",
             "I go back"

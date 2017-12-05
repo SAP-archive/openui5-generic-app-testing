@@ -1,7 +1,7 @@
 module.exports = {
     docs: {
         description: "Performs a click on a control of a certain type nested inside a control with a known id",
-        synopsis: "I click on the [<position>] <controlType> control '<deeply|directly>' nested inside <id> [with <property> '<text>'] [in <viewName> view]",
+        synopsis: "I click on the [POS] [CONTROL_TYPE] control (deeply|directly) nested inside CONTROL_ID [with PROPERTY 'TEXT'] [in VIEW_NAME view]",
         examples: [
             "I click on the control directly nested inside grpButtons",
             "I click on the first control deeply nested inside grpButtons with text containing 'hi'",

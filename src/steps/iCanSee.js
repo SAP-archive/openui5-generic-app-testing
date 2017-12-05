@@ -1,7 +1,7 @@
 module.exports = {
     docs: {
         description: "Tests whether an element is visible in a certain view",
-        synopsis: "I can see <id> [with <property> '<text>'] [in <viewName> view]",
+        synopsis: "I can see (CONTROL_ID | the [POS] [CONTROL_TYPE] control (deeply|directly) nested inside CONTROL_ID) [with PROPERTY 'TEXT'] [in VIEW_NAME view]",
         examples: [
             "I can see btnNext",
             "I can see btnNext with text 'next' in Detail view",

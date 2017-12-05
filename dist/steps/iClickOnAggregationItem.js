@@ -4,8 +4,8 @@
     var module = {};
     module.exports = {
         docs: {
-            description: "Performs a click on a specific item of a control collection (e.g., a list)",
-            synopsis: "I click on <position> item of <controlId> <collectionName> [in <viewName> view]",
+            description: "Performs a click on a specific item in a control aggregation (e.g., a list)",
+            synopsis: "I click on POS item of CONTROL_ID AGGREGATION_NAME [in VIEW_NAME view]",
             examples: [ "I click on first item of leaveRequestTableA items in Overview view", "I click on 2nd item of leaveRequestTableB items in Overview view", "I click on last item of leaveRequestTableC items in Main view", "I click on last item of lstObjects items" ]
         },
         icon: "cursor-arrow",

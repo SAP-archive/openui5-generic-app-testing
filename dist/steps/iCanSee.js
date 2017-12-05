@@ -5,7 +5,7 @@
     module.exports = {
         docs: {
             description: "Tests whether an element is visible in a certain view",
-            synopsis: "I can see <id> [with <property> '<text>'] [in <viewName> view]",
+            synopsis: "I can see (CONTROL_ID | the [POS] [CONTROL_TYPE] control (deeply|directly) nested inside CONTROL_ID) [with PROPERTY 'TEXT'] [in VIEW_NAME view]",
             examples: [ "I can see btnNext", "I can see btnNext with text 'next' in Detail view", "I can see lblTitle in Overview view", "I can see txtInput with value '1234ABCD' in Main view", "I can see txtInput with value containing '123' in Main view", "I can see txtInput with value containing '123'", "I can see the 21st sap.m.Button control deeply nested inside grpButtons with text 'Apples' in Main view", "I can see the sap.m.Button control deeply nested inside grpButtons" ]
         },
         icon: "show",

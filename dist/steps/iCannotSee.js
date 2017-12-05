@@ -5,7 +5,7 @@
     module.exports = {
         docs: {
             description: "Tests whether an element is visible in a certain view",
-            synopsis: "I cannot see <id> [in <viewName> view]",
+            synopsis: "I cannot see CONTROL_ID [in VIEW_NAME view]",
             examples: [ "I cannot see btnNext", "I cannot see btnNext in Detail view" ]
         },
         icon: "show",

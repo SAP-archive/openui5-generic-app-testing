@@ -1,7 +1,7 @@
 module.exports = {
     docs: {
         description: "Starts the app",
-        synopsis: "I start the app from '<pathToHtmlOrComponentId>'",
+        synopsis: "I start the app from 'PATH_TO_HTML_OR_COMPONENT_ID'",
         examples: [
             "I start the app from 'ui5app/test/ui5app.html'",
             "I start the app from 'sap.ui.sample.appUnderTest'",
