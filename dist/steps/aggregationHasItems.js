@@ -5,7 +5,7 @@
     module.exports = {
         docs: {
             description: "Tests whether a specific control aggregation contains items",
-            synopsis: "<controlId> [in <viewName> view] contains [number || 'no'] <aggregationName>",
+            synopsis: "CONTROL_ID [in VIEW_NAME view] contains (NUMBER|no) AGGREGATION_NAME",
             examples: [ "lstShapes contains 10 items", "lstShapes contains no items", "lstShapes contains items", "lstShapes in Main view contains items", "lstCities in Overview view contains 31 items", "lstCities in Detail view contains 0 items", "lstCities in Overview view contains no items" ]
         },
         icon: "group-2",
