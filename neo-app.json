@@ -1,0 +1,47 @@
+{
+	"routes": [{
+		"path": "/openui5genericapptesting",
+		"target": {
+			"type": "application",
+			"name": "openui5genericapptesting",
+			"entryPath": "/webapp/src"
+		},
+		"description": "openui5-generic-app-testing"
+	}, {
+		"path": "/webapp/resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/resources",
+			"version": "1.50.9"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/webapp/test-resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/test-resources",
+			"version": "1.50.9"
+		},
+		"description": "SAPUI5 Test Resources"
+	}, {
+		"path": "/resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/resources",
+			"version": "1.50.9"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/test-resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/test-resources",
+			"version": "1.50.9"
+		},
+		"description": "SAPUI5 Test Resources"
+	}]
+}
