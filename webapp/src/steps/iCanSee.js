@@ -16,10 +16,8 @@ module.exports = {
 		]
 	},
 	icon: "show",
-	regexp: new RegExp(["^I can see\\s+", "(",
-		"(the( first| last| \\d+?st| \\d+?rd| \\d+?th| \\d+?nd)?( ([a-zA-Z]+[.])+[a-zA-Z]+)? control\\s(deeply|directly) nested inside ([a-zA-Z0-9]+))|" // nested expr
-		, "([a-zA-Z0-9]+)" // <id>
-		, ")", "(\\swith\\s([^\\s]+)\\s(is\\s|containing\\s|starting\\swith\\s|ending\\swith\\s)?'(.+?)')?" // [with <property> '<string>']
+	regexp: new RegExp(["^I can see\\s+", "(", , "([a-zA-Z0-9]+)" // <id>
+		, ")", "(\\swith\\s([^\\s]+)\\s(is\\s|containing\\s|starting\\swith\\s|ending\\swith\\s)?'(.*?)')?" // [with <property> '<string>']
 		, "(\\s+in\\s+(.+?)\\sview)?\\s*$" // in <viewName> view
 	].join("")),
 	action: function(
