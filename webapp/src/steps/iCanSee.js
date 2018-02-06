@@ -44,13 +44,15 @@ module.exports = {
 	) {
 
 		var that = this;
-
+		
+		sTypeOfCheck = (sTypeOfCheck || "equal to").replace(/\s+$/g, "");
+		
 		var oWaitForOptions = {
 			id: sWholeNestedExpression ? sParentControlId : sControlId,
 			success: function(oControl) { // based on sWholeNestedExpression
 
 				var sInView = sViewName ? " in " + sViewName + " view" : "";
-
+					
 				if (sWholeNestedExpression) { // nested control search
 					var oSearch = that.utils.findControl(
 						sMaybePosition,
