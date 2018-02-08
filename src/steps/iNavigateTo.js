@@ -22,11 +22,7 @@ module.exports = {
         "$"                           //end of string
     ].join("")),
     icon: "locate-me",
-<<<<<<< HEAD
     action: function(sHash) {
-=======
-    action: function(sId, sHash) {
->>>>>>> 9e0760be2d0f43745ba90220b9acab4ed9d1753d
         var oWaitForOptions, that, oHasherChanger;
         that = this;
 
@@ -36,11 +32,7 @@ module.exports = {
 
         oWaitForOptions = {
             success: function() {
-<<<<<<< HEAD
                 that.Opa5.assert.strictEqual(oHasherChanger.getHash(), sHash, "Hash '" + sHash + "' set successfully.");
-=======
-                that.Opa5.assert.strictEquals(oHasherChanger.getHash(), sHash, "Hash '" + sHash + "' set successfully.");
->>>>>>> 9e0760be2d0f43745ba90220b9acab4ed9d1753d
             }
         };
         that.opa.waitFor(oWaitForOptions);
