@@ -68,6 +68,15 @@ Feature: Can trigger all actions provided by Gherkin Generic Steps
      When I click on btnRemoveListItem in Main view 3 times
      Then lstShapes in Main view contains no items
 
+  Scenario: iNavigateTo changes Hash
+    Given I can see lblLocation in Main view
+     When I navigate to /Customer
+      And I click on btnRefreshLocation in Main view
+     Then I can see lblLocation with text ending with '/Customer' in Main view
+     When I navigate to /Customer/7?tab=profile
+      And I click on btnRefreshLocation in Main view
+     Then I can see lblLocation with text ending with '/Customer/7?tab=profile' in Main view
+
   Scenario: iPressBrowserBack pre-requisite
     Given I can see lblLocation in Main view
       And I can see btnNavigate in Main view
