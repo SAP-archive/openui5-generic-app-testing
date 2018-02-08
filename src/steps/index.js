@@ -7,9 +7,11 @@ sap.ui.define([
     "./iPressBrowserBack",
     "./iStartTheApp",
     "./iClickOnNestedItem",
-    "./iSetFocus",
+     "./iSetFocus",
     "./controlHasFocus",
-    "./iCannotSee"
+    "./iPressKey",
+    "./iCannotSee",
+    "./iNavigateTo"
 ], function () {
     return Array.prototype.slice.call(arguments, 0);
 });
