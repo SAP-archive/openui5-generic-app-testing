@@ -23,6 +23,10 @@ Feature: Can trigger all actions provided by Gherkin Generic Steps
      Then I can see btnClickMe in Main view
       And I can see btnClickMe with enabled being 'true' in Main view
 
+  Scenario: iCanSee with empty value
+    Then I can see txtProductId in Main view
+     And I can see txtProductId with value '' in Main view
+
   Scenario: iCanSee (nested)
     Then I can see the first sap.ui.core.Item control deeply nested inside verticalBox in Main view
      And I can see the control directly nested inside verticalBox with text 'Hide list of shapes' in Main view
