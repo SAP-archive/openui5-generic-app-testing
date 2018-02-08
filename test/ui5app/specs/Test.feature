@@ -3,6 +3,15 @@ Feature: Can trigger all actions provided by Gherkin Generic Steps
   Background: Initial state
     Given  I start the app from 'ui5app/test/ui5app.html'
 
+  Scenario: iPressKey at control
+    Given I can see cbxSelection in Main view
+      And I can see lblComboboxSelection in Main view
+     When I press END at cbxSelection in Main view
+     Then I can see lblComboboxSelection with text 'black' in Main view
+     When I press ARROW_DOWN + ALT at cbxSelection in Main view
+     When I press ARROW_UP at cbxSelection in Main view
+     Then I can see lblComboboxSelection with text 'blue' in Main view
+
   Scenario: iClickOnNestedItem by position
     Given I can see verticalBox in Main view
      When I click on the 3rd sap.ui.core.Item control deeply nested inside verticalBox in Main view
