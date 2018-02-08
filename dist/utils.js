@@ -1,4 +1,4 @@
-/*! openui5-generic-app-testing 2017-12-05 */
+/*! openui5-generic-app-testing 2018-02-08 */
 
 (function() {
     var module = {};
@@ -122,6 +122,9 @@
 
           case "equal to":
             return sText === sValue;
+
+          case "being":
+            return sText === JSON.parse(sValue);
 
           default:
             throw new Error("Invalid operand for text value check: '" + sOperand + "'");

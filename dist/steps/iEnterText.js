@@ -1,4 +1,4 @@
-/*! openui5-generic-app-testing 2017-12-05 */
+/*! openui5-generic-app-testing 2018-02-08 */
 
 (function() {
     var module = {};
@@ -9,7 +9,7 @@
             examples: [ "I enter 'something' into txtField", "I enter 'hello' into txtNotesArea in Creation view", "I enter 'something \"good\"' into txtInput in Main view", "I enter '00012345689ABC' into txtProductId in Main view" ]
         },
         icon: "edit",
-        regexp: /^I enter '(.+?)' into ([a-zA-Z0-9]+)( in ([a-zA-Z0-9]+) view)?$/,
+        regexp: /^I enter '(.*?)' into ([a-zA-Z0-9]+)( in ([a-zA-Z0-9\.]+) view)?$/,
         action: function(sText, sControlId, sViewPart, sViewName) {
             var that = this;
             var oWaitForOptions = {
