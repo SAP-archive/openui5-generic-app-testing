@@ -7,7 +7,8 @@ sap.ui.define([
     "./iPressBrowserBack",
     "./iStartTheApp",
     "./iClickOnNestedItem",
-    "./iCannotSee"
+    "./iCannotSee",
+    "./iNavigateTo"
 ], function () {
     return Array.prototype.slice.call(arguments, 0);
 });
