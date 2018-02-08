@@ -55,7 +55,9 @@ module.exports = {
                 var sInView = sViewName
                     ? " in " + sViewName + " view"
                     : "";
-
+                    
+				sTypeOfCheck = (sTypeOfCheck || "equal to").replace(/\s+$/g, "");
+				
                 if (sWholeNestedExpression) {  // nested control search
                     var oSearch = that.utils.findControl(
                         sMaybePosition,
@@ -80,7 +82,7 @@ module.exports = {
                     var sPossibleFailReason = oMatch.success ? "" : " ERROR: " + oMatch.reason;
 
                     that.Opa5.assert.ok(oMatch.success, [
-                        sControlId, "with", sPropertyName, sTypeOfCheck + "'" + sValue + "'",
+                        sControlId, "with", sPropertyName, sTypeOfCheck, "'" + sValue + "'",
                         "was found" + sInView + sPossibleFailReason
                     ].join(" "));
 
