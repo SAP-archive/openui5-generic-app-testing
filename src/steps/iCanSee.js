@@ -9,6 +9,8 @@ module.exports = {
             "I can see txtInput with value '1234ABCD' in Main view",
             "I can see txtInput with value containing '123' in Main view",
             "I can see txtInput with value containing '123'",
+            "I can see boolSwitch with state is 'true'",
+            "I can see boolSwitch with state is 'false' in Sub view",
             "I can see the 21st sap.m.Button control deeply nested inside grpButtons with text 'Apples' in Main view",
             "I can see the sap.m.Button control deeply nested inside grpButtons"
         ]
@@ -19,7 +21,7 @@ module.exports = {
         , "(the( first| last| \\d+?st| \\d+?rd| \\d+?th| \\d+?nd)?( ([a-zA-Z]+[.])+[a-zA-Z]+)? control\\s(deeply|directly) nested inside ([a-zA-Z0-9]+))|" // nested expr
         , "([a-zA-Z0-9]+)"  // <id>
         , ")"
-        , "(\\swith\\s([^\\s]+)\\s(containing\\s|starting\\swith\\s|ending\\swith\\s)?'(.+?)')?"    // [with <property> '<string>']
+        , "(\\swith\\s([^\\s]+)\\s(being\\s|containing\\s|starting\\swith\\s|ending\\swith\\s)?'(.+?)')?"    // [with <property> '<string>']
         , "(\\s+in\\s+(.+?)\\sview)?\\s*$" // in <viewName> view
     ].join("")),
     action: function (
@@ -36,7 +38,7 @@ module.exports = {
 
         sWithProperty,
         sPropertyName,
-        sTypeOfCheck,
+        sTypeOfCheck,     // e.g. "containing", "being", "starting with"...
         sValue,
         sViewPart,
         sViewName
@@ -96,4 +98,3 @@ module.exports = {
         that.opa.waitFor(oWaitForOptions);
     }
 };
-

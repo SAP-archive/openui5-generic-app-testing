@@ -121,7 +121,13 @@ function findNestedAggregationItem (oTargetControl, oConstraints, bDeep, aContro
         remaining: aControlsToCheck
     };
 }
-
+/**
+ * Apply test of property value against expectes value
+ *
+ * @param sOperand {string} type of comparision
+ * @param sText {string} property value provided by controls getter
+ * @param sValue {string|boolean} expected value from test
+ */
 function testTextValue(sOperand, sText, sValue) {
     switch (sOperand) {
     case "containing":
@@ -134,6 +140,8 @@ function testTextValue(sOperand, sText, sValue) {
                 && iPosition + sValue.length === sText.length;
     case "equal to":
         return sText === sValue;
+   case "being":
+            return sText === JSON.parse(sValue);
     default:
         throw new Error("Invalid operand for text value check: '" + sOperand + "'");
     }
