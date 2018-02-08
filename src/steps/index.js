@@ -7,6 +7,7 @@ sap.ui.define([
     "./iPressBrowserBack",
     "./iStartTheApp",
     "./iClickOnNestedItem",
+    "./iPressKey",
     "./iCannotSee"
 ], function () {
     return Array.prototype.slice.call(arguments, 0);

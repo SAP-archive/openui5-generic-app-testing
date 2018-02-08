@@ -1,7 +1,16 @@
 Feature: Can trigger all actions provided by Gherkin Generic Steps
-  
+
   Background: Initial state
     Given  I start the app from 'ui5app/test/ui5app.html'
+
+  Scenario: iPressKey at control
+    Given I can see cbxSelection in Main view
+      And I can see lblComboboxSelection in Main view
+     When I press END at cbxSelection in Main view
+     Then I can see lblComboboxSelection with text 'black' in Main view
+     When I press ARROW_DOWN + ALT at cbxSelection in Main view
+     When I press ARROW_UP at cbxSelection in Main view
+     Then I can see lblComboboxSelection with text 'blue' in Main view
 
   Scenario: iClickOnNestedItem by position
     Given I can see verticalBox in Main view
@@ -12,13 +21,13 @@ Feature: Can trigger all actions provided by Gherkin Generic Steps
     Given I can see verticalBox in Main view
      When I click on the control deeply nested inside verticalBox with text containing 'quar' in Main view
      Then I can see lblListItemClicked with text 'Square shape was clicked' in Main view
-  
+
   Scenario: iCanSee
     Then I can see btnClickMe in Main view
      And I can see btnClickMe with text containing 'button was clicked' in Main view
      And I can see btnClickMe with text starting with 'This button' in Main view
      And I can see btnClickMe with text ending with 'times' in Main view
-    
+
   Scenario: iCanSee (nested)
     Then I can see the first sap.ui.core.Item control deeply nested inside verticalBox in Main view
      And I can see the control directly nested inside verticalBox with text 'Hide list of shapes' in Main view
@@ -64,13 +73,13 @@ Feature: Can trigger all actions provided by Gherkin Generic Steps
       And I can see btnNavigate in Main view
      When I click on btnNavigate in Main view
       And I click on btnRefreshLocation in Main view
-     Then I can see lblLocation with text ending with 'ui5app.html#nav' in Main view 
+     Then I can see lblLocation with text ending with 'ui5app.html#nav' in Main view
 
   Scenario: iPressBrowserBack pre-requisite
     Given I can see lblLocation in Main view
      When I click on btnNavigate in Main view
       And I press browser back
-     Then I can see lblLocation with text containing 'ui5app.html' in Main view 
+     Then I can see lblLocation with text containing 'ui5app.html' in Main view
 
   Scenario: iCannotSee (item does not exist - no main view given)
      Then I cannot see btnNotExisting
@@ -80,4 +89,3 @@ Feature: Can trigger all actions provided by Gherkin Generic Steps
      Then I cannot see lstShapes in Main view
   Scenario: iCannotSee (item does not exist)
      Then I cannot see notExistingButton in Main view
-

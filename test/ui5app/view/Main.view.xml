@@ -1,7 +1,7 @@
-<mvc:View 
+<mvc:View
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core"
-    xmlns="sap.m"            
+    xmlns="sap.m"
     controllerName="ui5app.controller">
 
     <Panel headerText="Gherkin Generic Actions test app">
@@ -19,11 +19,19 @@
                    <core:Item text="Circle" />
                </items>
            </SelectList>
+           <ComboBox id="cbxSelection" selectedKey="{/selectedComboboxKey}">
+             <items>
+                 <core:Item key="red" text="red" />
+                 <core:Item key="blue" text="blue" />
+                 <core:Item key="black" text="black" />
+             </items>
+           </ComboBox>
+           <Label id="lblComboboxSelection" text="{/selectedComboboxKey}"></Label>
            <Button id="btnRemoveListItem" text="Remove List Item" press="onRemoveListItemClicked" />
            <Label class="sapUiSmallMarginTop" visible="true" id="lblListItemClicked" text="{/sSelectedListItem} shape was clicked"></Label>
 
            <Input id="txtProductId" type="Text" placeholder="Enter Product ID" />
        </VBox>
-    </Panel>                                                     
+    </Panel>
 
  </mvc:View>
