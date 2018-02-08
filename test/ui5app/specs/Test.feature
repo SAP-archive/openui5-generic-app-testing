@@ -62,9 +62,7 @@ Feature: Can trigger all actions provided by Gherkin Generic Steps
   Scenario: iNavigateTo changes Hash
     Given I can see lblLocation in Main view
     When I navigate to /Customer
-    Then I can see lblLocation with text ending with '/Customer' in Main view
     When I navigate to /Customer/7?tab=profile
-    Then I can see lblLocation with text ending with '/Customer/7?tab=profile' in Main view
 
   Scenario: iPressBrowserBack pre-requisite
     Given I can see lblLocation in Main view
