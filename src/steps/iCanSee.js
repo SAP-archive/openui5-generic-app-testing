@@ -55,7 +55,9 @@ module.exports = {
                 var sInView = sViewName
                     ? " in " + sViewName + " view"
                     : "";
-
+                    
+				sTypeOfCheck = (sTypeOfCheck || "equal to").replace(/\s+$/g, "");
+				
                 if (sWholeNestedExpression) {  // nested control search
                     var oSearch = that.utils.findControl(
                         sMaybePosition,
