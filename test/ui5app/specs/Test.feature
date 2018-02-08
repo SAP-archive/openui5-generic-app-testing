@@ -3,6 +3,15 @@ Feature: Can trigger all actions provided by Gherkin Generic Steps
   Background: Initial state
     Given  I start the app from 'ui5app/test/ui5app.html'
 
+  Scenario: iPressKey at control
+    Given I can see cbxSelection in Main view
+      And I can see lblComboboxSelection in Main view
+     When I press END at cbxSelection in Main view
+     Then I can see lblComboboxSelection with text 'black' in Main view
+     When I press ARROW_DOWN + ALT at cbxSelection in Main view
+     When I press ARROW_UP at cbxSelection in Main view
+     Then I can see lblComboboxSelection with text 'blue' in Main view
+
   Scenario: iClickOnNestedItem by position
     Given I can see verticalBox in Main view
      When I click on the 3rd sap.ui.core.Item control deeply nested inside verticalBox in Main view
@@ -56,6 +65,11 @@ Feature: Can trigger all actions provided by Gherkin Generic Steps
      When I enter '00012345689ABC' into txtProductId in Main view
      Then I can see txtProductId with value '00012345689ABC' in Main view
 
+   Scenario: iSetFocus and controlHasFocus
+     Given I can see txtProductId in Main view
+      When I set focus on txtProductId in Main view
+      Then control txtProductId has focus in Main view
+
   Scenario: aggregationHasItem count existing items
     Given I can see lstShapes in Main view
      Then lstShapes in Main view contains 3 items
@@ -66,6 +80,15 @@ Feature: Can trigger all actions provided by Gherkin Generic Steps
     Given I can see lstShapes in Main view
      When I click on btnRemoveListItem in Main view 3 times
      Then lstShapes in Main view contains no items
+
+  Scenario: iNavigateTo changes Hash
+    Given I can see lblLocation in Main view
+     When I navigate to /Customer
+      And I click on btnRefreshLocation in Main view
+     Then I can see lblLocation with text ending with '/Customer' in Main view
+     When I navigate to /Customer/7?tab=profile
+      And I click on btnRefreshLocation in Main view
+     Then I can see lblLocation with text ending with '/Customer/7?tab=profile' in Main view
 
   Scenario: iPressBrowserBack pre-requisite
     Given I can see lblLocation in Main view
