@@ -57,6 +57,11 @@ Feature: Can trigger all actions provided by Gherkin Generic Steps
      When I enter '00012345689ABC' into txtProductId in Main view
      Then I can see txtProductId with value '00012345689ABC' in Main view
 
+   Scenario: iSetFocus and controlHasFocus
+     Given I can see txtProductId in Main view
+      When I set focus on txtProductId in Main view
+      Then control txtProductId has focus in Main view
+
   Scenario: aggregationHasItem count existing items
     Given I can see lstShapes in Main view
      Then lstShapes in Main view contains 3 items

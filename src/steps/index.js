@@ -7,6 +7,8 @@ sap.ui.define([
     "./iPressBrowserBack",
     "./iStartTheApp",
     "./iClickOnNestedItem",
+     "./iSetFocus",
+    "./controlHasFocus",
     "./iPressKey",
     "./iCannotSee",
     "./iNavigateTo"
