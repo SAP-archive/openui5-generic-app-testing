@@ -5,7 +5,6 @@ module.exports = {
 		examples: ["I press ENTER at inputField", "I press 'F1' at inputField in Creation view", "I press ARROW_DOWN + ALT at myComboBox"]
 	},
 	icon: "edit",
-	regexp: /^I press (.+?)(\s\+\s(ALT|SHIFT|CTRL))?\sat\s([a-zA-Z0-9]+)(\sin\s([a-zA-Z0-9\.]+)\sview)?$/,
 	regexp: new RegExp([
     "^I press\\s",    //start of string
     "(.+?)",          //key
