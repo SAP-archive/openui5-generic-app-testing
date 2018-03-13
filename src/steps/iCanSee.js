@@ -8,16 +8,16 @@ module.exports = {
             "I can see lblTitle in Overview view",
             "I can see txtInput with value '1234ABCD' in Main view",
             "I can see txtInput with value containing '123' in Main view",
-            "I can see txtInput with value containing '123'",
-            "I can see the 21st sap.m.Button control deeply nested inside grpButtons with text 'Apples' in Main view",
+            "I can see txt-input with value containing '123'",
+            "I can see the 21st sap.m.Button control deeply nested inside grp-buttons with text 'Apples' in Main view",
             "I can see the sap.m.Button control deeply nested inside grpButtons"
         ]
     },
     icon: "show",
     regexp: new RegExp(["^I can see\\s+"
         , "("
-        , "(the( first| last| \\d+?st| \\d+?rd| \\d+?th| \\d+?nd)?( ([a-zA-Z]+[.])+[a-zA-Z]+)? control\\s(deeply|directly) nested inside ([a-zA-Z0-9]+))|" // nested expr
-        , "([a-zA-Z0-9]+)"  // <id>
+        , "(the( first| last| \\d+?st| \\d+?rd| \\d+?th| \\d+?nd)?( ([a-zA-Z]+[.])+[-a-zA-Z]+)? control\\s(deeply|directly) nested inside ([-a-zA-Z0-9]+))|" // nested expr
+        , "([-a-zA-Z0-9]+)"  // <id>
         , ")"
         , "(\\swith\\s([^\\s]+)\\s(containing\\s|starting\\swith\\s|ending\\swith\\s)?'(.+?)')?"    // [with <property> '<string>']
         , "(\\s+in\\s+(.+?)\\sview)?\\s*$" // in <viewName> view
