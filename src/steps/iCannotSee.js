@@ -4,11 +4,11 @@ module.exports = {
         synopsis: "I cannot see CONTROL_ID [in VIEW_NAME view]",
         examples: [
             "I cannot see btnNext",
-            "I cannot see btnNext in Detail view"
+            "I cannot see btn-next in Detail view"
         ]
     },
     icon: "show",
-    regexp: new RegExp("^I cannot see ([a-zA-Z0-9]+)( in (.+?) view)?$"),
+    regexp: new RegExp("^I cannot see ([-a-zA-Z0-9]+)( in (.+?) view)?$"),
     action: function (sId, sViewPart, sViewName) {
         var that = this,
             oWaitForOptions;

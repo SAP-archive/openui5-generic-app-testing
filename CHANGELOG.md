@@ -2,6 +2,7 @@
 
 ## Current Development Version
 - Adjust synopses
+- Allow dashes in control ids for iCannotSee step
 
 ## Version 1.1.2
 - Added more powerful `iCanSee` action, which now supports searching nested items along the same lines of `iClickOnNestedItem`
