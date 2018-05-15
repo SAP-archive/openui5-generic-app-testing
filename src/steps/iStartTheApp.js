@@ -14,6 +14,8 @@ module.exports = {
     icon: "begin",
     regexp: /^I start the app from '((([a-zA-Z][a-zA-Z0-9]*[.])*[a-zA-Z][a-zA-Z0-9]*)|(.+[.]html))'$/,
     action: function (sPathOrComponent) {
+        "use strict";
+
         if (sPathOrComponent.match(/[.]html$/)) {
 
             if (sPathOrComponent.indexOf("http") === 0

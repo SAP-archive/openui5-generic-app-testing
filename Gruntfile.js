@@ -15,7 +15,9 @@ module.exports = function(grunt) {
 
         var sHeader = `
             /* global sap */
-            (function () { var module = {};
+            (function () {
+                "use strict";
+                var module = {};
 
             /* --- */
         `;
@@ -31,7 +33,7 @@ module.exports = function(grunt) {
             }());
         `;
 
-        return sHeader + content + sFooter;
+        return sHeader + content.replace(/"use strict";?/g, "") + sFooter;
     }
 
     grunt.initConfig({
@@ -43,8 +45,8 @@ module.exports = function(grunt) {
                 compress: false,
                 mangle: false,
                 output: {
-                    comments: 'all',
-                    quoteStyle: 'double'
+                    comments: "all",
+                    quoteStyle: "double"
                 }
             },
             all: {
@@ -91,6 +93,13 @@ module.exports = function(grunt) {
         },
         "clean": {
             erase: ["./dist/"]
+        },
+        "eslint": {
+            target: ["src/"],
+            options: {
+                configFile: ".eslintrc",
+                globals: ["module", "sap"]
+            }
         }
     });
 
@@ -98,8 +107,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-uglify");
     grunt.loadNpmTasks("grunt-contrib-clean");
     grunt.loadNpmTasks("grunt-contrib-copy");
+    grunt.loadNpmTasks("grunt-eslint");
 
 
     // Default task(s).
-    grunt.registerTask("default", ["clean", "copy:steps", "copy:utils", "copy:main", "uglify"]);
+    grunt.registerTask("default", ["clean", "eslint", "copy:steps", "copy:utils", "copy:main", "uglify"]);
 };

@@ -8,6 +8,7 @@ sap.ui.define([
     "sap/ui/test/matchers/AggregationEmpty",
     "sap/ui/test/matchers/AggregationLengthEquals"
 ], function ($, aSteps, oUtils, Press, EnterText, AggregationFilled, AggregationEmpty, AggregationLengthEquals) {
+    "use strict";
 
     return {
         register: function (GherkinSteps, oOpaInstance, Opa5) {

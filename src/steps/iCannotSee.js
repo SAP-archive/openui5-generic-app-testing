@@ -10,11 +10,11 @@ module.exports = {
     icon: "show",
     regexp: new RegExp("^I cannot see ([-a-zA-Z0-9]+)( in (.+?) view)?$"),
     action: function (sId, sViewPart, sViewName) {
+        "use strict";
+
         var that = this,
             oWaitForOptions;
 
-        var oControlView = null;
-        var aAllEncounteredControl = [];
         var bFound = false;
 
         oWaitForOptions = {

@@ -9,7 +9,9 @@ module.exports = {
     },
     icon: "nav-back",
     regexp: /I\s(go back|press browser back)$/i,
-    action: function() {
+    action: function () {
+        "use strict";
+
         var oAppWindow = this.Opa5.getWindow(),
             oContainer = oAppWindow && oAppWindow.sap && oAppWindow.sap.ushell && oAppWindow.sap.ushell.Container;
 

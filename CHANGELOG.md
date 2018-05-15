@@ -1,6 +1,7 @@
 # Changelog
 
 ## Current Development Version
+- Add eslint validation
 - Adjust synopses
 - Allow dashes in control ids for iCannotSee step
 - Allow dashes in control ids for iCanSee step

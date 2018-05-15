@@ -9,5 +9,6 @@ sap.ui.define([
     "./iClickOnNestedItem",
     "./iCannotSee"
 ], function () {
+    "use strict";
     return Array.prototype.slice.call(arguments, 0);
 });

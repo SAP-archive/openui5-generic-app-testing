@@ -15,7 +15,8 @@ module.exports = {
         , "(\\s(\\d+)\\stimes)?$"  // [<number> times]
     ].join("")),
     icon: "cursor-arrow",
-    action: function(sId, sViewPart, sViewName, sNumTimesBit, sNumTimes) {
+    action: function (sId, sViewPart, sViewName, sNumTimesBit, sNumTimes) {
+        "use strict";
         var oWaitForOptions,
             iTimes,
             that;

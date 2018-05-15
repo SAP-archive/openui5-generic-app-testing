@@ -41,6 +41,7 @@ module.exports = {
         sViewPart,
         sViewName
     ) {
+        "use strict";
 
         var that = this;
 

@@ -9,7 +9,7 @@ module.exports = {
             "lstShapes in Main view contains items",
             "lstCities in Overview view contains 31 items",
             "lstCities in Detail view contains 0 items",
-            "lstCities in Overview view contains no items",
+            "lstCities in Overview view contains no items"
         ]
     },
     icon: "group-2",
@@ -22,6 +22,8 @@ module.exports = {
                                                    */
     ].join("")),
     action: function (sId, sViewPart, sViewName, sNumber, sAggregationName) {
+        "use strict";
+
         var sMessage,
             iNumber,
             oMatcher,

@@ -33,6 +33,7 @@ module.exports = {
         sViewPart,         // e.g., " in Main view"
         sViewName          // e.g., "Main"
     ) {
+        "use strict";
 
         var that = this;
 

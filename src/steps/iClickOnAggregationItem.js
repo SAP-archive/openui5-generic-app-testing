@@ -17,6 +17,8 @@ module.exports = {
         , "(\\sin (.+?) view)?$"
     ].join("")),
     action: function (sItemPosition, sControlId, sAggregationName, sViewPart, sViewName) {
+        "use strict";
+
         var that = this;
         var oWaitForOptions = {
             id: sControlId,

@@ -12,6 +12,8 @@ module.exports = {
     icon: "edit",
     regexp: /^I enter '(.+?)' into ([a-zA-Z0-9]+)( in ([a-zA-Z0-9]+) view)?$/,
     action: function (sText, sControlId, sViewPart, sViewName) {
+        "use strict";
+
         var that = this;
         var oWaitForOptions = {
             id: sControlId,
