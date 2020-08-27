@@ -1,0 +1,8 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: openui5-generic-app-testing
+Upstream-Contact: Savio Dimatteo <savio.dimatteo@sap.com>
+Source: https://github.com/SAP/openui5-generic-app-testing
+
+Files: *
+Copyright: 2017 SAP SE or an SAP affiliate company and openui5-generic-app-testing contributors
+License: Apache-2.0

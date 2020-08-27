@@ -204,7 +204,3 @@ Being based on OPA, this library is affected by its same limitations:
 
 - pretty confirmation dialog when submitting a proposal via the contribution tool.
 
-## License
-
-Copyright (c) 2017 SAP SE. All rights reserved.  This file is licensed under
-the Apache Software License 2.0 except as noted otherwise in the [LICENSE](LICENSE) file.
