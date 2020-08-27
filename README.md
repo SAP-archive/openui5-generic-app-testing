@@ -1,5 +1,6 @@
 OpenUI5 Generic App Testing
 ---------------------------
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP/openui5-generic-app-testing)](https://api.reuse.software/info/github.com/SAP/openui5-generic-app-testing)
 
 *Generic App Testing* is a client-side JavaScript library that uses the
 excellent OPA (One Page Acceptance) and Gherkin support already provided by
