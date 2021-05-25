@@ -1,3 +1,8 @@
+![](https://img.shields.io/badge/STATUS-NOT%20CURRENTLY%20MAINTAINED-red.svg?longCache=true&style=flat)
+
+# Important Notice
+This public repository is read-only and no longer maintained.
+
 OpenUI5 Generic App Testing
 ---------------------------
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP/openui5-generic-app-testing)](https://api.reuse.software/info/github.com/SAP/openui5-generic-app-testing)
